@@ -1,14 +1,25 @@
-import { Link, Form } from "react-router-dom"
+import { Link, Form, useActionData } from "react-router-dom"
 
-export async function action() {
+export async function action({request}) {
  
-  console.log('Desde action ...');
+  const data = Object.fromEntries(await request.formData())
+  let error = ''
+
+  if(Object.values(data).includes('')){
+    error= 'Todos los campos son Obligatorios'
+  }
+  if (error.length) {
+    return error
+  }
 }
 
 
 export default function NewProduct() {
 
+  const error = useActionData()
 
+  console.log(error);
+  
 
   return (
     <>
