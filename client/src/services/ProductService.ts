@@ -1,3 +1,7 @@
+import { safeParse } from "valibot"
+import { DraftProductSchema } from "../types"
+
+
 
 type ProductData = {
     [k: string]: FormDataEntryValue
@@ -5,6 +9,21 @@ type ProductData = {
 
 
 export async function addProduct(data:ProductData) {
-    console.log(data)
+    try {
+        const result = safeParse(DraftProductSchema, {
+            name: data.name,
+            price: +data.price
+        })
+        console.log(result);
+        
+        if (result.success) {
+                
+        } else {
+            throw new Error('Invalid data')
+        }
+    } catch (error) {
+        console.log(error);
+        
+    }
 }
     
