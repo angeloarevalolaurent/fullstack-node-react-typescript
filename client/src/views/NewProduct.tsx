@@ -2,6 +2,8 @@ import { Link, Form, useActionData, type ActionFunctionArgs, redirect } from "re
 import ErrorMessage from "../components/ErrorMessage"
 import { addProduct } from "../services/ProductService"
 import ProductForm from "../components/ProductForm"
+
+
 export async function action({request}: ActionFunctionArgs) {
  
   const data = Object.fromEntries(await request.formData())
